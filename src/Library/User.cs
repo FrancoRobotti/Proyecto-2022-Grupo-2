@@ -3,7 +3,22 @@ public class User   //Esta clase va a manejar un nickname del usuario y la funci
 {
     //se crea la clase User, se agrega el atributo de NickName y el metodo MatchMaking()
 
-    public string NickName { get; set; }
+    public string NickName
+    {
+        get
+        {
+            return this.NickName;
+        }
+        private set
+        {
+            this.NickName = NickName != null ? NickName : value;
+        }
+    }
+
+    public User(string NickName)
+    {
+        this.NickName = NickName;
+    }
 
     public void MatchMaking() //hay que ver exactamente que hace esta funcion
     {
