@@ -22,9 +22,6 @@ public class User   //Esta clase va a manejar un nickname del usuario y la funci
 
     public void MatchMaking() //hay que ver exactamente que hace esta funcion
     {
-
+        //metodo
     }
-
-
-
 }
