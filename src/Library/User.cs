@@ -15,9 +15,9 @@ public class User   //Esta clase va a manejar un nickname del usuario y la funci
         }
     }
 
-    public User(string NickName)
+    public User(string nickName)
     {
-        this.NickName = NickName;
+        this.NickName = nickName;
     }
 
     public void MatchMaking() //hay que ver exactamente que hace esta funcion
