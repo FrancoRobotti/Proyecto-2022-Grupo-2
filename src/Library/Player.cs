@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Proyecto
+namespace NavalBattle
 {
     public class Player     //Esta clase va a manejar el usuario y el tablero del jugador
     {
