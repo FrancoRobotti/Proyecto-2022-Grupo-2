@@ -11,4 +11,17 @@ public class Player     //Esta clase va a manejar el usuario y el tablero del ju
         this.user = user;
         GameBoard gameBoard = new GameBoard();
     }
+
+    public bool Turn
+    {
+        get
+        {
+            return this.Turn;
+        }
+        set
+        {
+            this.Turn = Turn;
+        }
+    }
+
 }
