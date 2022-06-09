@@ -1,27 +1,30 @@
 ﻿using System;
 
-namespace Proyecto;
-public class Player     //Esta clase va a manejar el usuario y el tablero del jugador
+namespace Proyecto
 {
-    //se crea la clase player  y se agregan lo atributos de User y GameBoard
-    private User user;
-    private GameBoard gameBoard;
-    public Player(User user)
+    public class Player     //Esta clase va a manejar el usuario y el tablero del jugador
     {
-        this.user = user;
-        GameBoard gameBoard = new GameBoard();
-    }
-
-    public bool Turn
-    {
-        get
+        //se crea la clase player  y se agregan lo atributos de User y GameBoard
+        private User user;
+        private GameBoard gameBoard;
+        private bool Trun;
+        public Player(User user)
         {
-            return this.Turn;
+            this.user = user;
+            GameBoard gameBoard = new GameBoard();
         }
-        set
-        {
-            this.Turn = Turn;
-        }
-    }
 
+        public bool Turn
+        {
+            get
+            {
+                return this.Turn;
+            }
+            set
+            {
+                this.Turn = Turn;
+            }
+        }
+
+    }
 }
