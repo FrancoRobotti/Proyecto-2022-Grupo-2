@@ -8,15 +8,22 @@ namespace NavalBattle
     {   
         private int side;
 
-        private string[,] gameboard;
+        //private string[,] gameboard;
 
         private List<Ship> ships;
+
+        private List<Bomb> bombs;
 
         public Gameboard (int side)
         {
             this.side = side;
-            this.gameboard = new string[side,side];
+
+            //this.gameboard = new string[side,side];
+
             this.ships = new List<Ship>();
+
+            //if (Match.Bombs == true) 
+            this.bombs = new List<Bomb>();
         }   
 
         //Los Ship se crean en Gameboard por creator.
@@ -29,7 +36,7 @@ namespace NavalBattle
 
             bool validShip = true;
 
-            //El Ship es una lista de coordenadas, donde el usuario ingresa la coordenada inicial, largo y direccion del barco. 
+            //El Ship es una lista de coordenadas(string), donde el usuario ingresa la coordenada inicial, largo y direccion del barco. 
             //Con estos datos se checkea si es valida la posicion del barco en el tablero y se agregan al barco el resto de sus coordenadas. 
             if ((direction == "N") && (initialCoordX - length >= -1))
             {
@@ -96,6 +103,44 @@ namespace NavalBattle
                     Console.WriteLine("Barcos superpuestos");
                 }
             }     
+        }
+        
+        //Las Bomb se crean en Gameboard por creator.
+        public void AddBomb()
+        {   
+            Random rnd = new Random();
+            
+            int bombCoordX = rnd.Next(0, this.side -1);
+
+            int bombCoordY = rnd.Next(0, this.side - 1);
+
+            Bomb bomb = new Bomb(bombCoordX.ToString() + bombCoordY.ToString());
+
+            bombs.Add(bomb);
+        }
+
+        public string[,] GetGameboardToPrint()
+        {
+            string[,] res = new string[this.side , this.side];
+
+            for (int i = 0; i < this.side; i++)
+            {
+                for (int j = 0; i < this.side; i++)
+                {
+                   foreach (Ship ship in ships)
+                   {
+                       if (ship.Coords.Contains(i.ToString() + j.ToString()))
+                       {
+                           res[i,j] = "o";
+                       }
+                       else
+                       {
+                           res[i,j] = "~";
+                       }
+                   }
+                }
+            }
+            return res;
         }
     }
 }

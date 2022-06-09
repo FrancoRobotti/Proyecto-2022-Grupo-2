@@ -1,0 +1,5 @@
+C:\Users\Juan\Desktop\Proyecto-2022-Grupo-2\src\Library\obj\Debug\net5.0\Library.csproj.AssemblyReference.cache
+C:\Users\Juan\Desktop\Proyecto-2022-Grupo-2\src\Library\obj\Debug\net5.0\Library.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Juan\Desktop\Proyecto-2022-Grupo-2\src\Library\obj\Debug\net5.0\Library.AssemblyInfoInputs.cache
+C:\Users\Juan\Desktop\Proyecto-2022-Grupo-2\src\Library\obj\Debug\net5.0\Library.AssemblyInfo.cs
+C:\Users\Juan\Desktop\Proyecto-2022-Grupo-2\src\Library\obj\Debug\net5.0\Library.csproj.CoreCompileInputs.cache
