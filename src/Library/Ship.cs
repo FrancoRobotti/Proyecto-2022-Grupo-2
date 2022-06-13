@@ -12,13 +12,31 @@ namespace NavalBattle
 
         private int length;
 
-        private bool sunk;
+        public enum State
+        {
+            Healthy, Damaged, Sunk
+        }
 
-        private List<string> coords;
+        private State shipState;
 
-        public List<string> Coords 
+        public State ShipState
         {
             get
+            {
+                return this.shipState;
+            }
+
+            set
+            {
+                this.shipState = ShipState;
+            }
+        }
+
+        private List<string> coords;
+    
+        public List<string> Coords 
+        {
+            get 
             {
                 return coords;
             }
@@ -29,14 +47,13 @@ namespace NavalBattle
             this.length = length;
             this.initialCoord = initialCoord;
             this.direction = direction;
-            this.sunk = false;
-            this.coords = new List<string>();
+            shipState = State.Healthy;
+            coords = new List<string>();
         }
-
 
         public void AddShipCoord(string coord)
         {
-            this.coords.Add(coord);
+            coords.Add(coord);
         }
     }
 }

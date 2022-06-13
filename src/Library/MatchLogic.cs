@@ -1,44 +1,44 @@
-namespace Proyecto
+using System.Collections.Generic;
+
+namespace NavalBattle
 {
-    public class MatchLogic
+    public class MatchLogic : Match
     {
-        Match match = new Match();
+        public void Attack(Coords coords)
+        {
+            if (!coords.HasBeenAttacked)
+            {
+                coords.HasBeenAttacked = true;
+            }
+        }
+
+        public void PlaceShip(string initialCoords, string direction)
+        {
+            for (int i = 2; i < 4; i++)
+            {
+                if (i <= 4 || players[0].Turn)
+                {
+                    players[0].Gameboard.addShip(i, direction, initialCoords);
+
+                    players[0].Turn = false;
+                    players[1].Turn = true;
+                }
+                else if (i <= 4 || players[1].Turn)
+                {
+                    players[1].Gameboard.addShip(i, direction, initialCoords);
+
+                    players[1].Turn = false;
+                    players[0].Turn = true;
+                }
+            }
+        }
 
         public void Surrender(Player player)
         {
-            
-        }
-
-        public void Attack(Coords coords)
-        {
-            
-        }
-
-        public void PlaceShip(initialCoords, direction, length)
-        {
-            if (player1.Turn())
+            foreach (Ship ship in player.Gameboard.Ships)
             {
-                foreach (Ship ship in this.player1.Gameboard)
-                {
-                    match.Player1.Gameboard.PlaceShip();
-                }
-                player1.Turn() = false;
-                player2.Turn() = true;
+                ship.ShipState = Ship.State.Sunk;
             }
-            else
-            {
-                foreach (Ship ship in this.player2.Gameboard)
-                {
-                    this.matchLogic.PlaceShip();
-                }
-                player2.Turn() = false;
-                Player1.Turn() = true;
-            }
-        }
-
-        public void Update()
-        {
-            
         }
     }
 }

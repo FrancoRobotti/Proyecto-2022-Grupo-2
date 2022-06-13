@@ -1,30 +1,29 @@
-﻿namespace Proyecto;
-public class User   //Esta clase va a manejar un nickname del usuario y la funcionalidad de MatchMaking
+﻿namespace NavalBattle
 {
-    //se crea la clase User, se agrega el atributo de NickName y el metodo MatchMaking()
-
-    public string NickName
+    public class User   //Esta clase va a manejar un nickname del usuario y la funcionalidad de MatchMaking
     {
-        get
+        //se crea la clase User, se agrega el atributo de NickName y el metodo MatchMaking()
+
+        public string NickName
         {
-            return this.NickName;
+            get
+            {
+                return this.NickName;
+            }
+            private set
+            {
+                this.NickName = NickName != null ? NickName : value;
+            }
         }
-        private set
+
+        public User(string nickName)
         {
-            this.NickName = NickName != null ? NickName : value;
+            this.NickName = nickName;
+        }
+
+        public void MatchMaking() //hay que ver exactamente que hace esta funcion
+        {
+            //generar codigo para que el otro usuario se conecte a una partida
         }
     }
-
-    public User(string nickName)
-    {
-        this.NickName = nickName;
-    }
-
-    public void MatchMaking() //hay que ver exactamente que hace esta funcion
-    {
-        //generar codigo para que el otro usuario se conecte a una partida
-    }
-
-
-
 }

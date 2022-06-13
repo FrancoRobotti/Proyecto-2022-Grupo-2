@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Proyecto
+namespace NavalBattle
 {
     public class Admin
     {
@@ -11,37 +11,39 @@ namespace Proyecto
 
         }
 
-        public void MatchPlayers(User user1, User user2)
+        public void CreateMatch()
         {
-            Player player1 = new Player(user1)
-            Player player2 = new Player(user2);
-            Match match = new Match(player1, player2);
+            Match match = new Match();
             this.matchList.Add(match);
         }
 
-
-        public string AttackInfo()
+        public void MatchPlayers(User user1, User user2, Match match)
         {
-            foreach (player.Attack)
-            {
-                
-            }
+            match.AddPlayers(user1, user2);
+        }
+
+
+        public void AttackInfo()
+        {
+            
         }
 
         //Una vez que todos los barcos de un jugador han sido hundidos, finaliza el juego.
-        public bool EndGame()
+        public bool EndGame(Player[] players)
         {
-            foreach (player x in Match)
+            foreach (Player player in players)
             {
-                foreach (Ship y in player.gameboard.ship)
+                foreach (Ship ship in player.Gameboard.Ships)
                 {
-                    if (y.Sunk)
+                    if (ship.ShipState == Ship.State.Sunk)
                     {
                         return true;
                     }
                     return false;
                 }
+                return false;
             }
+            return false;
         }
     }
 }

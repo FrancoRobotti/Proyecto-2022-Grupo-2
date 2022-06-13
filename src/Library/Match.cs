@@ -1,43 +1,15 @@
-namespace Proyecto
+namespace NavalBattle
 {
     public class Match
     {
-        Player Player1;
+        protected internal Player[] players = new Player[2];
 
-        Player Player2;
-
-        public Match(Player player1, Player player2)
+        public void AddPlayers(User user1, User user2)
         {
-            this.Player1 = player1;
-            this.Player2 = player2;
+            Player player1 = new Player(user1);
+            Player player2 = new Player(user2);
+            players[0] = player1;
+            players[1] = player2;
         }
-
-        public void PlaceShip()
-        {
-            if (player1.Turn())
-            {
-                foreach (Ship ship in this.player1.Gameboard)
-                {
-                    this.matchLogic.PlaceShip();
-                }
-                player1.Turn() = false;
-                player2.Turn() = true;
-            }
-            else
-            {
-                foreach (Ship ship in this.player2.Gameboard)
-                {
-                    this.matchLogic.PlaceShip();
-                }
-                player2.Turn() = false;
-                Player1.Turn() = true;
-            }
-        }
-
-        public void Surrender(Player player)
-        {
-            this.matchLogic.Surrender(player);
-        }
-
     }
 }

@@ -1,27 +1,43 @@
 ﻿using System;
 
-namespace Proyecto;
-public class Player     //Esta clase va a manejar el usuario y el tablero del jugador
+namespace NavalBattle
 {
-    //se crea la clase player  y se agregan lo atributos de User y GameBoard
-    private User user;
-    private GameBoard gameBoard;
-    public Player(User user)
+    public class Player   //Esta clase va a manejar el usuario y el tablero del jugador
     {
-        this.user = user;
-        GameBoard gameBoard = new GameBoard();
-    }
-
-    public bool Turn
-    {
-        get
+        //se crea la clase player  y se agregan lo atributos de User y GameBoard
+        private User user;
+        private Gameboard gameboard;
+        private bool turn;
+        public Player(User user)
         {
-            return this.Turn;
+            this.user = user;
+            Gameboard gameboard = new Gameboard(7);
+            this.turn = false;
         }
-        set
+
+        public bool Turn
+        {       
+            get
+            {
+                return this.turn;
+            }
+            set
+            {
+                this.turn = Turn;
+            }
+        }
+
+        public Gameboard Gameboard
         {
-            this.Turn = Turn;
+            get
+            {
+                return this.gameboard;
+            }
+            
+            set
+            {
+                this.gameboard = Gameboard;
+            }
         }
     }
-
 }

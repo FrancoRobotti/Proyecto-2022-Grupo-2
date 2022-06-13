@@ -17,7 +17,15 @@ namespace NavalBattle
             this.side = side;
             this.gameboard = new string[side,side];
             this.ships = new List<Ship>();
-        }   
+        }
+
+        public List<Ship> Ships
+        {
+            get
+            {
+                return this.ships;
+            }
+        }
 
         //Los Ship se crean en Gameboard por creator.
         public void addShip(int length, string initialCoord, string direction)
