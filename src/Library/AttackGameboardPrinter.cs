@@ -3,7 +3,7 @@ using System.Text;
 
 namespace NavalBattle
 {
-    public class DefenseGameboardPrinter : IPrinter
+    public class AttackGameboardPrinter : IPrinter
     {
         public void PrintGameboard(IGameboardContent gameboardContent)
         {
@@ -17,17 +17,13 @@ namespace NavalBattle
             {
                 for (int j = 0; j < lenght; j++)
                 {
-                    if(gameboard[i,j] == "o")
-                    {
-                        s.Append("|o|");
-                    }
-                    else if (gameboard[i,j] == "x")
+                    if (gameboard[i,j] == "x")
                     {
                         s.Append("|x|");
                     }
                     else
                     {
-                        s.Append("|~|");
+                        s.Append("| |");
                     }
                 }
                 s.Append("\n");

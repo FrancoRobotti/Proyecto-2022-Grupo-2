@@ -4,6 +4,6 @@ namespace NavalBattle
 {
     public interface IPrinter
     {
-        void PrintGameboard(Gameboard gameboard);
+        public void PrintGameboard(IGameboardContent gameboardContent);
     }
 }

@@ -4,11 +4,11 @@ using System.IO;
 
 namespace NavalBattle
 {
-    public class Gameboard
+    public class Gameboard : IGameboardContent
     {   
         private int side;
 
-        //private string[,] gameboard;
+        private string[,] gameboard;
 
         private List<Ship> ships;
 
@@ -18,7 +18,7 @@ namespace NavalBattle
         {
             this.side = side;
 
-            //this.gameboard = new string[side,side];
+            this.gameboard = new string[side,side];
 
             this.ships = new List<Ship>();
 
@@ -29,7 +29,7 @@ namespace NavalBattle
         //Los Ship se crean en Gameboard por creator.
         public void addShip(int length, string initialCoord, string direction)
         {
-            Ship ship = new Ship(length, initialCoord, direction);
+            Ship ship = new Ship(length, direction);
             
             int initialCoordX = (int)Char.GetNumericValue(initialCoord[0]);
             int initialCoordY = (int)Char.GetNumericValue(initialCoord[1]);
@@ -67,7 +67,7 @@ namespace NavalBattle
                 for (int i = 0; i < length; i++)
                 {
                     ship.AddShipCoord(initialCoordX.ToString() + initialCoordY.ToString());
-                    initialCoordY++;
+                    initialCoordY--;
                 }
             }
             else
@@ -95,8 +95,15 @@ namespace NavalBattle
                 if (validShipCounter == 0)
                 {
                     ships.Add(ship);
-                    Console.WriteLine("Barco colocado correctamente");
 
+                    foreach (string coord in ship.Coords)
+                    {
+                        int shipCoordX = (int)Char.GetNumericValue(coord[0]);
+                        int shipCoordY = (int)Char.GetNumericValue(coord[1]);
+
+                        this.gameboard[shipCoordX, shipCoordY] = "o";
+                    }
+                    Console.WriteLine("Barco colocado correctamente");
                 }
                 else
                 {
@@ -121,26 +128,27 @@ namespace NavalBattle
 
         public string[,] GetGameboardToPrint()
         {
-            string[,] res = new string[this.side , this.side];
+            return this.gameboard;
+        }
 
-            for (int i = 0; i < this.side; i++)
+        public void RecieveAttack(string coord)
+        {   
+            int woundedShipChecker = 0;
+
+            foreach (Ship placedShip in ships)
             {
-                for (int j = 0; i < this.side; i++)
+                if (placedShip.Coords.Contains(coord))
                 {
-                   foreach (Ship ship in ships)
-                   {
-                       if (ship.Coords.Contains(i.ToString() + j.ToString()))
-                       {
-                           res[i,j] = "o";
-                       }
-                       else
-                       {
-                           res[i,j] = "~";
-                       }
-                   }
+                    woundedShipChecker += 1;
                 }
             }
-            return res;
+            if (woundedShipChecker == 1)
+            {
+                int attackCoordX = (int)Char.GetNumericValue(coord[0]);
+                int attackCoordY = (int)Char.GetNumericValue(coord[1]);
+
+                this.gameboard[attackCoordX, attackCoordY] = "x";
+            }
         }
     }
 }
