@@ -6,7 +6,7 @@ namespace NavalBattle
 {
     public class Ship
     {
-        private string initialCoord;
+        private Coords initialCoord;
 
         private string direction;
 
@@ -32,9 +32,9 @@ namespace NavalBattle
             }
         }
 
-        private List<string> coords;
+        private List<Coords> coords;
     
-        public List<string> Coords 
+        public List<Coords> Coords 
         {
             get 
             {
@@ -42,16 +42,16 @@ namespace NavalBattle
             }
         }
         
-        public Ship (int length, string initialCoord, string direction)
+        public Ship (int length, Coords initialCoord, string direction)
         {
             this.length = length;
             this.initialCoord = initialCoord;
             this.direction = direction;
             shipState = State.Healthy;
-            coords = new List<string>();
+            coords = new List<Coords>();
         }
 
-        public void AddShipCoord(string coord)
+        public void AddShipCoord(Coords coord)
         {
             coords.Add(coord);
         }
