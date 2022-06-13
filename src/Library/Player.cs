@@ -8,6 +8,13 @@ namespace NavalBattle
     {
         //se crea la clase player  y se agregan lo atributos de User y GameBoard
         private User user;
+        private Gameboard gameBoard;
+
+        public Gameboard GameBoard
+        {
+            get { return gameBoard; }
+            set { gameBoard = value; }
+        }
         private bool Trun;          //esto declara el turno de cada jugador
         public Player(User user)
         {
