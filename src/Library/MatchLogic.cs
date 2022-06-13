@@ -12,20 +12,21 @@ namespace NavalBattle
             }
         }
 
-        public void PlaceShip(string initialCoords, string direction)
+        public void PlaceShip(string initialCoordsString, string direction)
         {
+            Coords initialCoords = new Coords(initialCoordsString);
             for (int i = 2; i < 4; i++)
             {
                 if (i <= 4 || players[0].Turn)
                 {
-                    players[0].Gameboard.addShip(i, direction, initialCoords);
+                    players[0].Gameboard.addShip(i, initialCoords, direction);
 
                     players[0].Turn = false;
                     players[1].Turn = true;
                 }
                 else if (i <= 4 || players[1].Turn)
                 {
-                    players[1].Gameboard.addShip(i, direction, initialCoords);
+                    players[1].Gameboard.addShip(i, initialCoords, direction);
 
                     players[1].Turn = false;
                     players[0].Turn = true;

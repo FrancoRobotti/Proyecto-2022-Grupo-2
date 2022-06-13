@@ -4,7 +4,7 @@ using System.IO;
 
 namespace NavalBattle
 {
-    public class Gameboard
+    public class Gameboard : IGameboardContent
     {   
         private int side;
 
@@ -12,32 +12,31 @@ namespace NavalBattle
 
         private List<Ship> ships;
 
+        private List<Bomb> bombs;
+
         public Gameboard (int side)
         {
             this.side = side;
-            this.gameboard = new string[side,side];
-            this.ships = new List<Ship>();
-        }
 
-        public List<Ship> Ships
-        {
-            get
-            {
-                return this.ships;
-            }
-        }
+            this.gameboard = new string[side,side];
+
+            this.ships = new List<Ship>();
+
+            //if (Match.Bombs == true) 
+            this.bombs = new List<Bomb>();
+        }   
 
         //Los Ship se crean en Gameboard por creator.
-        public void addShip(int length, string initialCoord, string direction)
+        public void addShip(int length, Coords initialCoord, string direction)
         {
-            Ship ship = new Ship(length, initialCoord, direction);
+            Ship ship = new Ship(length, direction);
             
-            int initialCoordX = (int)Char.GetNumericValue(initialCoord[0]);
-            int initialCoordY = (int)Char.GetNumericValue(initialCoord[1]);
+            int initialCoordX = (int)Char.GetNumericValue(initialCoord.CoordsLocation[0]);
+            int initialCoordY = (int)Char.GetNumericValue(initialCoord.CoordsLocation[1]);
 
             bool validShip = true;
 
-            //El Ship es una lista de coordenadas, donde el usuario ingresa la coordenada inicial, largo y direccion del barco. 
+            //El Ship es una lista de coordenadas(string), donde el usuario ingresa la coordenada inicial, largo y direccion del barco. 
             //Con estos datos se checkea si es valida la posicion del barco en el tablero y se agregan al barco el resto de sus coordenadas. 
             if ((direction == "N") && (initialCoordX - length >= -1))
             {
@@ -68,7 +67,7 @@ namespace NavalBattle
                 for (int i = 0; i < length; i++)
                 {
                     ship.AddShipCoord(initialCoordX.ToString() + initialCoordY.ToString());
-                    initialCoordY++;
+                    initialCoordY--;
                 }
             }
             else
@@ -84,7 +83,7 @@ namespace NavalBattle
 
                 foreach (Ship placedShip in ships)
                 {
-                    foreach (string coord in ship.Coords)
+                    foreach (Coords coord in ship.Coords)
                     {
                         if (placedShip.Coords.Contains(coord))
                         {
@@ -96,14 +95,60 @@ namespace NavalBattle
                 if (validShipCounter == 0)
                 {
                     ships.Add(ship);
-                    Console.WriteLine("Barco colocado correctamente");
 
+                    foreach (Coords coord in ship.Coords)
+                    {
+                        int shipCoordX = (int)Char.GetNumericValue(coord.CoordsLocation[0]);
+                        int shipCoordY = (int)Char.GetNumericValue(coord.CoordsLocation[1]);
+
+                        this.gameboard[shipCoordX, shipCoordY] = "o";
+                    }
+                    Console.WriteLine("Barco colocado correctamente");
                 }
                 else
                 {
                     Console.WriteLine("Barcos superpuestos");
                 }
             }     
+        }
+        
+        //Las Bomb se crean en Gameboard por creator.
+        public void AddBomb()
+        {   
+            Random rnd = new Random();
+            
+            int bombCoordX = rnd.Next(0, this.side -1);
+
+            int bombCoordY = rnd.Next(0, this.side - 1);
+
+            Bomb bomb = new Bomb(bombCoordX.ToString() + bombCoordY.ToString());
+
+            bombs.Add(bomb);
+        }
+
+        public string[,] GetGameboardToPrint()
+        {
+            return this.gameboard;
+        }
+
+        public void RecieveAttack(Coords coord)
+        {   
+            int woundedShipChecker = 0;
+
+            foreach (Ship placedShip in ships)
+            {
+                if (placedShip.Coords.Contains(coord))
+                {
+                    woundedShipChecker += 1;
+                }
+            }
+            if (woundedShipChecker == 1)
+            {
+                int attackCoordX = (int)Char.GetNumericValue(coord.CoordsLocation[0]);
+                int attackCoordY = (int)Char.GetNumericValue(coord.CoordsLocation[1]);
+
+                this.gameboard[attackCoordX, attackCoordY] = "x";
+            }
         }
     }
 }
