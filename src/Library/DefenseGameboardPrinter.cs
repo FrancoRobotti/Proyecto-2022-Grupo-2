@@ -3,6 +3,7 @@ using System.Text;
 
 namespace NavalBattle
 {
+    //Imprime el tablero mostrando la posicion de los barcos, mostrando si estan heridos o no.
     public class DefenseGameboardPrinter : IPrinter
     {
         public void PrintGameboard(IGameboardContent gameboardContent)
