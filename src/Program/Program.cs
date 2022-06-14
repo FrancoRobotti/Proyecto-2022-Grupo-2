@@ -86,7 +86,7 @@ namespace Ucu.Poo.TelegramBot
             var revealer = serviceProvider.GetService<ISecretService>();
             token = revealer.Token;
         }
-
+ 
         private static IHandler firstHandler;
 
         /// <summary>
