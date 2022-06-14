@@ -1,14 +1,6 @@
 {
-	"version": "2.0.0",
-	"tasks": [
-		{
-			"type": "Live Preview",
-			"args": [],
-			"problemMatcher": [
-				"$tsc"
-			],
-			"label": "Live Preview: Run Server"
-        },
+    "version": "2.0.0",
+    "tasks": [
         {
             "label": "build",
             "command": "dotnet",
@@ -45,5 +37,5 @@
             ],
             "problemMatcher": "$msCompile"
         }
-	]
+    ]
 }

@@ -27,8 +27,9 @@ namespace NavalBattle
         }   
 
         //Los Ship se crean en Gameboard por creator.
-        public void addShip(int length, Coords initialCoord, string direction)
+        public void addShip(int length, string initialCoordString, string direction)
         {
+            Coords initialCoord = new Coords(initialCoordString);
             Ship ship = new Ship(length, direction);
             
             int initialCoordX = (int)Char.GetNumericValue(initialCoord.CoordsLocation[0]);
