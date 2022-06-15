@@ -12,7 +12,19 @@ namespace NavalBattle
 
             gameboard.addShip(4, "34", "W");
 
-            gameboard.RecieveAttack("32");
+            gameboard.addShip(2, "40", "E");
+
+            Coords coord1 = new Coords("41");
+            
+            Coords coord2 = new Coords("12");
+
+
+            gameboard.RecieveAttack(coord1);
+
+            gameboard.RecieveAttack(coord2);
+
+            gameboard.RecieveAttack(coord2);
+
 
             IPrinter printer;
             
@@ -22,7 +34,7 @@ namespace NavalBattle
 
             printer = new AttackGameboardPrinter();
 
-            printer.PrintGameboard(gameboard);
+            printer.PrintGameboard(gameboard); 
         }
     }
 }

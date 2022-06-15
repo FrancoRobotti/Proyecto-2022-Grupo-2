@@ -14,9 +14,9 @@ namespace NavalBattle
 
         private bool sunk;
 
-        private List<string> coords;
+        private List<Coords> coords;
 
-        public List<string> Coords 
+        public List<Coords> Coords 
         {
             get
             {
@@ -30,13 +30,30 @@ namespace NavalBattle
             //this.initialCoord = initialCoord;
             this.direction = direction;
             this.sunk = false;
-            this.coords = new List<string>();
+            this.coords = new List<Coords>();
         }
 
-
-        public void AddShipCoord(string coord)
+        //Añade una coordenada al barco.
+        public void AddShipCoord(Coords coord)
         {
+            //Coords coord = new Coords(coordString);
             this.coords.Add(coord);
+        }
+
+        //Metodo que devuelve si el barco esta hundido o no.
+        public bool IsSunk()
+        {
+            int sunkChecker = 0;
+
+            foreach (Coords coord in this.Coords)
+            {
+                if (!coord.HasBeenAttacked)
+                {
+                    sunkChecker += 1;
+                }
+            }
+
+            return (sunkChecker == 0);
         }
     }
 }

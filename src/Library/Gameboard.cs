@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 
+
 namespace NavalBattle
 {
     public class Gameboard : IGameboardContent
@@ -26,6 +27,7 @@ namespace NavalBattle
             this.bombs = new List<Bomb>();
         }   
 
+        //Metodo que añade barcos al tablero.
         //Los Ship se crean en Gameboard por creator.
         public void addShip(int length, string initialCoord, string direction)
         {
@@ -41,8 +43,9 @@ namespace NavalBattle
             if ((direction == "N") && (initialCoordX - length >= -1))
             {
                 for (int i = 0; i < length; i++)
-                {                                      
-                    ship.AddShipCoord(initialCoordX.ToString() + initialCoordY.ToString());
+                {   
+                    Coords coord = new Coords(initialCoordX.ToString() + initialCoordY.ToString());                                   
+                    ship.AddShipCoord(coord);
                     initialCoordX--; 
                 }
             }  
@@ -50,7 +53,8 @@ namespace NavalBattle
             {
                 for (int i = 0; i < length; i++)
                 {
-                    ship.AddShipCoord(initialCoordX.ToString() + initialCoordY.ToString());
+                    Coords coord = new Coords(initialCoordX.ToString() + initialCoordY.ToString());                                   
+                    ship.AddShipCoord(coord);
                     initialCoordY++;
                 }
             }
@@ -58,7 +62,8 @@ namespace NavalBattle
             {
                 for (int i = 0; i < length; i++)
                 {
-                    ship.AddShipCoord(initialCoordX.ToString() + initialCoordY.ToString());
+                    Coords coord = new Coords(initialCoordX.ToString() + initialCoordY.ToString());                                   
+                    ship.AddShipCoord(coord);
                     initialCoordX++;
                 }
             }
@@ -66,12 +71,13 @@ namespace NavalBattle
             {
                 for (int i = 0; i < length; i++)
                 {
-                    ship.AddShipCoord(initialCoordX.ToString() + initialCoordY.ToString());
+                    Coords coord = new Coords(initialCoordX.ToString() + initialCoordY.ToString());                                   
+                    ship.AddShipCoord(coord);
                     initialCoordY--;
                 }
             }
             else
-            {
+            {  
                 validShip = false;
                 Console.WriteLine("Barco fuera de rango");
             }
@@ -83,23 +89,27 @@ namespace NavalBattle
 
                 foreach (Ship placedShip in ships)
                 {
-                    foreach (string coord in ship.Coords)
+                    foreach (Coords placedCoord in placedShip.Coords)
                     {
-                        if (placedShip.Coords.Contains(coord))
+                        foreach (Coords coord in ship.Coords)
                         {
-                            validShipCounter += 1;
-                        }
+                            if (coord.CoordsLocation == placedCoord.CoordsLocation)
+                            {
+                                validShipCounter += 1;
+                            }                     
+                        }                    
                     }
                 }
-
+                
+                //Si el barco a agregar no comparte ninguna coordenada con ningun barco posicionado, se agrega al tablero.
                 if (validShipCounter == 0)
                 {
                     ships.Add(ship);
 
-                    foreach (string coord in ship.Coords)
+                    foreach (Coords coord in ship.Coords)
                     {
-                        int shipCoordX = (int)Char.GetNumericValue(coord[0]);
-                        int shipCoordY = (int)Char.GetNumericValue(coord[1]);
+                        int shipCoordX = (int)Char.GetNumericValue(coord.CoordsLocation[0]);
+                        int shipCoordY = (int)Char.GetNumericValue(coord.CoordsLocation[1]);
 
                         this.gameboard[shipCoordX, shipCoordY] = "o";
                     }
@@ -126,29 +136,41 @@ namespace NavalBattle
             bombs.Add(bomb);
         }
 
+        //Devuelve el contenido del tablero que se va a imprimir.
         public string[,] GetGameboardToPrint()
-        {
+        {      
             return this.gameboard;
         }
 
-        public void RecieveAttack(string coord)
+        //Metodo llamado desde la logica de la partida cuando un jugador ataca a otro.
+        public void RecieveAttack(Coords coord)
         {   
             int woundedShipChecker = 0;
 
             foreach (Ship placedShip in ships)
             {
-                if (placedShip.Coords.Contains(coord))
+                foreach(Coords placedCoord in placedShip.Coords)
                 {
-                    woundedShipChecker += 1;
+                    if(placedCoord.CoordsLocation == coord.CoordsLocation) 
+                    {
+                        woundedShipChecker += 1;
+                        
+                        placedCoord.HasBeenAttacked = true;    
+                    }
                 }
             }
+            
+            int attackCoordX = (int)Char.GetNumericValue(coord.CoordsLocation[0]);
+            int attackCoordY = (int)Char.GetNumericValue(coord.CoordsLocation[1]);
+            
             if (woundedShipChecker == 1)
             {
-                int attackCoordX = (int)Char.GetNumericValue(coord[0]);
-                int attackCoordY = (int)Char.GetNumericValue(coord[1]);
-
-                this.gameboard[attackCoordX, attackCoordY] = "x";
+                this.gameboard[attackCoordX, attackCoordY] = "t";       
             }
-        }
-    }
+            else
+            {
+                this.gameboard[attackCoordX, attackCoordY] = "x";       
+            }
+        }      
+    }     
 }
