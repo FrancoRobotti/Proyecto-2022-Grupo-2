@@ -131,12 +131,12 @@ namespace NavalBattle
 
             int bombCoordY = rnd.Next(0, this.side - 1);
 
-            Bomb bomb = new Bomb(bombCoordX.ToString() + bombCoordY.ToString());
+            Bomb bomb = new Bomb(bombCoordX.ToString() +  bombCoordY.ToString());
 
             bombs.Add(bomb);
         }
 
-        //Devuelve el contenido del tablero que se va a imprimir.
+        //Devuelve el contenido del tablero que se va a imprimir
         public string[,] GetGameboardToPrint()
         {      
             return this.gameboard;
