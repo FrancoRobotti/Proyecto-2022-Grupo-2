@@ -3,21 +3,22 @@ using Telegram.Bot.Types;
 namespace NavalBattle
 {
     /// <summary>
-    /// Un "handler" del patrón Chain of Responsibility que implementa el comando "hola".
+    /// Un "handler" del patrón Chain of Responsibility que implementa el comando "chau".
     /// </summary>
-    public class HelloHandler : BaseHandler
+    public class PlayWithBotHandler : BaseHandler
     {
         /// <summary>
-        /// Inicializa una nueva instancia de la clase <see cref="HelloHandler"/>. Esta clase procesa el mensaje "hola".
+        /// Inicializa una nueva instancia de la clase <see cref="GoodByeHandler"/>. Esta clase procesa el mensaje "chau"
+        /// y el mensaje "adiós" -un ejemplo de cómo un "handler" puede procesar comandos con sinónimos.
         /// </summary>
         /// <param name="next">El próximo "handler".</param>
-        public HelloHandler(BaseHandler next) : base(next)
+        public PlayWithBotHandler(BaseHandler next) : base(next)
         {
-            this.Keywords = new string[] {"hola"};
+            this.Keywords = new string[] { "/JugarConElBot" };
         }
 
         /// <summary>
-        /// Procesa el mensaje "hola" y retorna true; retorna false en caso contrario.
+        /// Procesa el mensaje "chau" y retorna true; retorna false en caso contrario.
         /// </summary>
         /// <param name="message">El mensaje a procesar.</param>
         /// <param name="response">La respuesta al mensaje procesado.</param>
@@ -26,7 +27,7 @@ namespace NavalBattle
         {
             if (this.CanHandle(message))
             {
-                response = "¡Hola! ¿Cómo estás?" + "\n\n" + "Si desea ver el menu, escriba /menu";
+                response = "hola";
                 return true;
             }
 

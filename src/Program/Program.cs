@@ -12,7 +12,7 @@ using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
 using Telegram.Bot.Types.InputFiles;
 
-namespace Ucu.Poo.TelegramBot
+namespace NavalBattle
 {
     /// <summary>
     /// Un programa que implementa un bot de Telegram.
@@ -100,9 +100,13 @@ namespace Ucu.Poo.TelegramBot
 
             firstHandler =
                 new HelloHandler(
-                new GoodByeHandler(
-                new PhotoHandler(Bot, null)
-            ));
+                new NickName(
+                new Menu(
+                new PlayWithBot(
+                new GameboardSize(
+                new Bombs(
+                new DoubleAttack(
+                new Match())))))));
 
             var cts = new CancellationTokenSource();
 
