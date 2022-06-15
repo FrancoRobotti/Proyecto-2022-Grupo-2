@@ -3,7 +3,6 @@ using System.Text;
 
 namespace NavalBattle
 {
-    //Imprime el tablero sin mostrar la posicion de los barcos, solamente muestra donde se efectuaron los ataques.
     public class AttackGameboardPrinter : IPrinter
     {
         public void PrintGameboard(IGameboardContent gameboardContent)
@@ -18,11 +17,15 @@ namespace NavalBattle
             {
                 for (int j = 0; j < lenght; j++)
                 {
-                    if (gameboard[i,j] == "x")
+                    if (gameboard[i,j] == "t")
+                    {
+                        s.Append("|T|");
+                    }
+                    else if (gameboard[i,j] == "x")
                     {
                         s.Append("|x|");
                     }
-                    else
+                    else 
                     {
                         s.Append("| |");
                     }
