@@ -13,15 +13,15 @@ namespace NavalBattle
         }
         public void Attack(Coords coord)
         {   
-            if (match.players[0].Turn == true)
+            if (match.Turn == true)
             {   
-                string res = match.players[0].Gameboard.RecieveAttack(coord);
-                match.players[0].Turn = false;
+                string res = match.players[1].Gameboard.RecieveAttack(coord);
+                //match.players[0].Turn = false;
             }
             else
             {
                 string res = match.players[0].Gameboard.RecieveAttack(coord);
-                match.players[1].Turn = false;
+                //match.players[1].Turn = false;
             }
         }
     

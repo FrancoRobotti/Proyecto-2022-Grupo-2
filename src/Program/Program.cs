@@ -14,7 +14,7 @@ namespace NavalBattle
 
             user1.SearchGame(user1, user2, 6);
 
-            user1.player.AttckPlayer("03");
+            //user1.player.Attack("03");
 
             //Match match = admin.GetMatch(12);
 
