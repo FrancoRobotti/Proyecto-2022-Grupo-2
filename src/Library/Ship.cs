@@ -6,8 +6,6 @@ namespace NavalBattle
 {
     public class Ship
     {
-        //private string initialCoord;
-
         private string direction;
 
         private int length;
@@ -27,7 +25,6 @@ namespace NavalBattle
         public Ship (int length, string direction)
         {
             this.length = length;
-            //this.initialCoord = initialCoord;
             this.direction = direction;
             this.sunk = false;
             this.coords = new List<Coords>();
@@ -52,7 +49,6 @@ namespace NavalBattle
                     sunkChecker += 1;
                 }
             }
-
             return (sunkChecker == 0);
         }
     }

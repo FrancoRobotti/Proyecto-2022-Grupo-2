@@ -17,11 +17,11 @@ namespace NavalBattle
             {
                 for (int j = 0; j < lenght; j++)
                 {
-                    if((gameboard[i,j] == "o"))
+                    if(gameboard[i,j] == "o")
                     {
                         s.Append("|o|");
                     }
-                    else if ((gameboard[i,j] == "t"))
+                    else if(gameboard[i,j] == "t")
                     {
                         s.Append("|x|");
                     }

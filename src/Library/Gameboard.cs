@@ -11,20 +11,23 @@ namespace NavalBattle
 
         private string[,] gameboard;
 
-        private List<Ship> ships;
+        private List<Ship> ships = new List<Ship>();
 
-        private List<Bomb> bombs;
+        private List<Bomb> bombs = new List<Bomb>();
+
+        public List<Ship> Ships
+        {
+            get
+            {
+                return this.ships;
+            }
+        }
 
         public Gameboard (int side)
         {
             this.side = side;
 
             this.gameboard = new string[side,side];
-
-            this.ships = new List<Ship>();
-
-            //if (Match.Bombs == true) 
-            this.bombs = new List<Bomb>();
         }   
 
         //Metodo que añade barcos al tablero.
@@ -143,34 +146,63 @@ namespace NavalBattle
         }
 
         //Metodo llamado desde la logica de la partida cuando un jugador ataca a otro.
-        public void RecieveAttack(Coords coord)
+        public string RecieveAttack(Coords coord)
         {   
+            string res = "Agua";
+
             int woundedShipChecker = 0;
 
             foreach (Ship placedShip in ships)
             {
-                foreach(Coords placedCoord in placedShip.Coords)
+                foreach(Coords placedShipCoord in placedShip.Coords)
                 {
-                    if(placedCoord.CoordsLocation == coord.CoordsLocation) 
+                    if(placedShipCoord.CoordsLocation == coord.CoordsLocation) 
                     {
                         woundedShipChecker += 1;
                         
-                        placedCoord.HasBeenAttacked = true;    
+                        placedShipCoord.HasBeenAttacked = true;   
+
+                        if (placedShip.IsSunk())
+                        {
+                        res = "Hundido";
+                        }
+                        else
+                        {
+                        res = "Tocado";
+                        } 
                     }
-                }
+                }     
             }
             
             int attackCoordX = (int)Char.GetNumericValue(coord.CoordsLocation[0]);
+            
             int attackCoordY = (int)Char.GetNumericValue(coord.CoordsLocation[1]);
             
             if (woundedShipChecker == 1)
             {
-                this.gameboard[attackCoordX, attackCoordY] = "t";       
+                this.gameboard[attackCoordX, attackCoordY] = "t";    
+
             }
             else
             {
                 this.gameboard[attackCoordX, attackCoordY] = "x";       
             }
-        }      
+            
+            return res;
+        }
+
+        public bool isMatchFinished()
+        {
+            int finishMatchChecker = 0;
+
+            foreach (Ship placedShip in ships)
+            {
+                if (placedShip.IsSunk())
+                {
+                    finishMatchChecker++;
+                }
+            }
+            return (finishMatchChecker == ships.Count);
+        }
     }     
 }
