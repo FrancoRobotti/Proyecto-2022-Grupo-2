@@ -126,15 +126,19 @@ namespace NavalBattle
         }
         
         //Las Bomb se crean en Gameboard por creator.
-        public void AddBomb()
+        public void AddBomb(string bombCoordStr)
         {   
-            Random rnd = new Random();
+            //Random rnd = new Random();
             
-            int bombCoordX = rnd.Next(0, this.side -1);
+            //int bombCoordX = rnd.Next(0, this.side -1);
 
-            int bombCoordY = rnd.Next(0, this.side - 1);
+            //int bombCoordY = rnd.Next(0, this.side - 1);
 
-            Bomb bomb = new Bomb(bombCoordX.ToString() + bombCoordY.ToString());
+            //string bombCoordStr = bombCoordX.ToString() + bombCoordY.ToString();
+
+            Coords coord = new Coords(bombCoordStr);
+
+            Bomb bomb = new Bomb(coord);
 
             bombs.Add(bomb);
         }
@@ -148,6 +152,7 @@ namespace NavalBattle
         //Metodo llamado desde la logica de la partida cuando un jugador ataca a otro.
         public string RecieveAttack(Coords coord)
         {   
+            
             string res = "Agua";
 
             int woundedShipChecker = 0;
@@ -188,6 +193,27 @@ namespace NavalBattle
                 this.gameboard[attackCoordX, attackCoordY] = "x";       
             }
             
+            foreach(Bomb bomb in bombs)
+            {
+                if (bomb.Coord.CoordsLocation == coord.CoordsLocation)
+                {
+                    RecieveAttack(new Coords((attackCoordX+1).ToString() + (attackCoordY).ToString()));
+
+                    RecieveAttack(new Coords((attackCoordX).ToString() + (attackCoordY+1).ToString()));
+
+                    RecieveAttack(new Coords((attackCoordX+1).ToString() + (attackCoordY-1).ToString()));
+
+                    RecieveAttack(new Coords((attackCoordX+1).ToString() + (attackCoordY+1).ToString()));
+
+                    RecieveAttack(new Coords((attackCoordX-1).ToString() + (attackCoordY).ToString()));
+
+                    RecieveAttack(new Coords((attackCoordX).ToString() + (attackCoordY-1).ToString()));
+
+                    RecieveAttack(new Coords((attackCoordX-1).ToString() + (attackCoordY-1).ToString()));
+
+                    RecieveAttack(new Coords((attackCoordX-1).ToString() + (attackCoordY+1).ToString()));
+                }
+            }
             return res;
         }
 

@@ -49,14 +49,7 @@ namespace NavalBattle
         //Una vez que todos los barcos de un jugador han sido hundidos, finaliza el juego.
         public void EndGame()
         {
-           foreach (Match match in matchList)
-           {
-                if(match.MatchEnded)
-                {
-                    Console.WriteLine("La partida ha finalizado");
-                    matchList.Remove(match);
-                }
-           }
+          
         }
     }
 }
