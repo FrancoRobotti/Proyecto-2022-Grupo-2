@@ -17,6 +17,7 @@ namespace NavalBattle
 
         private List<Coords> water = new List<Coords>();
 
+        private bool bombsSwitch;
         public List<Ship> Ships
         {
             get
@@ -132,17 +133,28 @@ namespace NavalBattle
         
         private void AddWater()
         {
+            int shipCoordChecker = 0;
+
             for(int i = 0; i < this.side; i++)
             {
                 for(int j = 0; j < this.side; j++)
                 {
+                    Coords coord = new Coords(i.ToString()+j.ToString());
+
                     foreach(Ship ship in this.ships)
-                    {
-                        if (!ship.ShipContainCoord(new Coords(i.ToString()+j.ToString())))
+                    {        
+                        if (ship.ShipContainCoord(coord))
                         {
-                            this.water.Add(new Coords(i.ToString()+j.ToString()));
+                            shipCoordChecker++;
                         }
                     }
+
+                    if (shipCoordChecker == 0)
+                    {
+                        this.water.Add(coord);
+                    }
+
+                    shipCoordChecker = 0;
                 }
             }
         }
