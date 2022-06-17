@@ -51,5 +51,28 @@ namespace NavalBattle
             }
             return (sunkChecker == 0);
         }
+
+        public bool ShipContainCoord(Coords coord)
+        {
+            foreach(Coords shipCoord in coords)
+            {
+                if (shipCoord.CoordsEquals(coord))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public void RecieveDamage(Coords coord)
+        {
+            foreach(Coords shipCoord in this.coords)
+            {
+                if (shipCoord.CoordsEquals(coord))
+                {
+                    shipCoord.ChangeCoordState();
+                }
+            }
+        }
     }
 }

@@ -15,7 +15,7 @@ namespace NavalBattle
 
         public void SearchGame(User user1, User user2, int boardSide) 
         {
-             Admin.getAdmin().CreateMatch(user1, user2, boardSide);
+            Admin.getAdmin().CreateMatch(user1, user2, boardSide);
         }
     }
 }

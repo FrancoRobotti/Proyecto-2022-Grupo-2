@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jtaba\\OneDrive\\Escritorio\\Proyecto-2022-Grupo-2\\src\\Library\\Library.csproj": {}
+    "C:\\Users\\Juan\\Desktop\\Proyecto-2022-Grupo-2\\src\\Library\\Library.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jtaba\\OneDrive\\Escritorio\\Proyecto-2022-Grupo-2\\src\\Library\\Library.csproj": {
+    "C:\\Users\\Juan\\Desktop\\Proyecto-2022-Grupo-2\\src\\Library\\Library.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jtaba\\OneDrive\\Escritorio\\Proyecto-2022-Grupo-2\\src\\Library\\Library.csproj",
+        "projectUniqueName": "C:\\Users\\Juan\\Desktop\\Proyecto-2022-Grupo-2\\src\\Library\\Library.csproj",
         "projectName": "Library",
-        "projectPath": "C:\\Users\\jtaba\\OneDrive\\Escritorio\\Proyecto-2022-Grupo-2\\src\\Library\\Library.csproj",
-        "packagesPath": "C:\\Users\\jtaba\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jtaba\\OneDrive\\Escritorio\\Proyecto-2022-Grupo-2\\src\\Library\\obj\\",
+        "projectPath": "C:\\Users\\Juan\\Desktop\\Proyecto-2022-Grupo-2\\src\\Library\\Library.csproj",
+        "packagesPath": "C:\\Users\\Juan\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Juan\\Desktop\\Proyecto-2022-Grupo-2\\src\\Library\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\jtaba\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Juan\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -52,7 +52,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
         }
       }
     }

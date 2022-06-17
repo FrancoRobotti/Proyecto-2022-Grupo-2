@@ -25,11 +25,17 @@ namespace NavalBattle
             {
                 return this.hasBeenAttacked;
             }
+        }
 
-            set
-            {
-                this.hasBeenAttacked = HasBeenAttacked;
-            }
+    
+        public bool CoordsEquals(Coords coord)
+        {
+            return (this.CoordsLocation == coord.coordsLocation);
+        }
+
+        public void ChangeCoordState()
+        {
+            this.hasBeenAttacked = true;
         }
     }
 }
