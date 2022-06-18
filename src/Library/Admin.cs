@@ -2,34 +2,24 @@ using System.Collections.Generic;
 
 namespace NavalBattle
 {
-    public class Admin
+    public static class Admin
     {
-        List<Match> matchList = new List<Match>();
+        private static List<Match> matchList = new List<Match>();
 
-        public void UserRegister(string nickname)
+        private static void StartMatch(Match match)
         {
-
+            matchList.Add(match);
         }
 
-        public void CreateMatch()
+        public static void MatchPlayers(User user1, User user2)
         {
             Match match = new Match();
-            this.matchList.Add(match);
-        }
-
-        public void MatchPlayers(User user1, User user2, Match match)
-        {
             match.AddPlayers(user1, user2);
-        }
-
-
-        public void AttackInfo()
-        {
-            
+            StartMatch(match);
         }
 
         //Una vez que todos los barcos de un jugador han sido hundidos, finaliza el juego.
-        public bool EndGame(Player[] players)
+        public static bool EndGame(Player[] players)
         {
             foreach (Player player in players)
             {

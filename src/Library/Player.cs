@@ -8,10 +8,10 @@ namespace NavalBattle
         private User user;
         private Gameboard gameboard;
         private bool turn;
-        public Player(User user)
+        public Player(User user, int gameboardSize)
         {
             this.user = user;
-            Gameboard gameboard = new Gameboard(7);
+            Gameboard gameboard = new Gameboard(gameboardSize);
             this.turn = false;
         }
 

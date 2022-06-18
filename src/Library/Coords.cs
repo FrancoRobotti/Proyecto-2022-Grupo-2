@@ -5,7 +5,7 @@ namespace NavalBattle
         private string coordsLocation;
 
         private bool hasBeenAttacked = false;
-
+        
         public Coords(string aCoordsLocation)
         {
             this.coordsLocation = aCoordsLocation;
