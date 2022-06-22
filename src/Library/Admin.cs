@@ -7,10 +7,17 @@ namespace NavalBattle
     {
         List<Match> matchList = new List<Match>();
 
+        public List<Match> MatchList
+        {
+            get
+            {
+                return matchList;
+            }
+        }
+
         List<string> usersRegister = new List<string>();
 
-        //List<User> matchmaking = new List<User>();
-
+    
         /// <summary>
         /// Ser utiliza singleton para admin.
         /// </summary>
@@ -31,15 +38,38 @@ namespace NavalBattle
             usersRegister.Add(nickname);
         }
     
-        public void CreateMatch(User user1, User user2, int gameboardSide)
-        {
-            Match match = new Match(user1, user2, gameboardSide); 
-            MatchLogic matchLogic = new MatchLogic(match);
-            this.matchList.Add(match);
-            
-            Console.WriteLine("Partida creada correctamente");
+        public void AddToWaitingList(User user)
+        {     
+            if (WaitingList.waitingList.Count > 0)
+            {
+                int i = 0;
+                while(i< WaitingList.waitingList.Count &&  WaitingList.waitingList[i].GameboardSide != user.GameboardSide && WaitingList.waitingList[i].Bombs != user.Bombs && WaitingList.waitingList[i].DoubleAttack != user.DoubleAttack)
+                {
+                    i++;
+                }
+                if (i < WaitingList.waitingList.Count)
+                {
+                    CreateMatch(user, WaitingList.waitingList[i]);
+                    WaitingList.waitingList.Remove(user);
+                    WaitingList.waitingList.Remove(WaitingList.waitingList[i]);
+                }
+                else
+                {
+                    WaitingList.waitingList.Add(user);
+                }
+            }
+            else
+            {
+                WaitingList.waitingList.Add(user);
+            }
         }
-    
+        
+        public void CreateMatch(User user1, User user2)
+        {
+            Match match = new Match(user1, user2);
+
+            matchList.Add(match);
+        }
 
         public void AttackInfo()
         {

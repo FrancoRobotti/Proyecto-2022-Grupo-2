@@ -2,7 +2,9 @@ namespace NavalBattle
 {
     public class Match
     { 
-        protected internal Player[] players = new Player[2];
+        private Player player1;
+
+        private Player player2;
 
         private bool turn = true;
 
@@ -28,16 +30,45 @@ namespace NavalBattle
             }
         }
         
-        public Match(User user1, User user2, int gameboardSide)
+        public Match(User user1, User user2)
         { 
-            Player player1 = new Player(gameboardSide);
-            Player player2 = new Player(gameboardSide);
+
+            this.player1 = new Player(user1.GameboardSide);
+            this.player2 = new Player(user2.GameboardSide);
             
+           
             user1.player = player1;
             user2.player = player2;
 
-            players[0] = player1;
-            players[1] = player2;
+
+        }
+
+        public void Attack(Coords coord)
+        {
+            if (turn == true)
+            {
+                player2.Gameboard.RecieveAttack(coord);
+                turn = false;
+            }
+            else
+            {
+                player1.Gameboard.RecieveAttack(coord);
+                turn = true;
+            }
+        }
+
+        public void PlaceShip(int length, string initialCoord, string direction)
+        {
+            if (turn == true)
+            {
+                player1.Gameboard.addShip(length, initialCoord, direction);
+                turn = false;
+            }
+            else
+            {
+                player2.Gameboard.addShip(length, initialCoord, direction);
+                turn = true;
+            }
         }
     }
 }

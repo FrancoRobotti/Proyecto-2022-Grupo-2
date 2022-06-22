@@ -4,8 +4,43 @@ namespace NavalBattle
 {
     public class User   //Esta clase va a manejar un nickname del usuario y la funcionalidad de MatchMaking
     {
+        private bool bombs;
+
+        public bool Bombs
+        {
+            get
+            {
+                return bombs;
+            }
+        }
+
+        private bool doubleAttack;
+
+        public bool DoubleAttack
+        {
+            get
+            {
+                return doubleAttack;
+            }
+        }
+        private int gameboardSide;
+
+        public int GameboardSide
+        {
+            get
+            {
+                return gameboardSide;
+            }
+        }
         private string nickName;
-        //se crea la clase User, se agrega el atributo de NickName y el metodo MatchMaking
+        
+        public string NickName
+        {
+            get
+            {
+                return nickName;
+            }
+        }
         public Player player {get; set;}
 
         public User(string aNickName)
@@ -13,9 +48,15 @@ namespace NavalBattle
             this.nickName = aNickName;
         }
 
-        public void SearchGame(User user1, User user2, int boardSide) 
+        public void SearchGame(int gameboardSide, bool bombs, bool doubleAttack) 
         {
-            Admin.getAdmin().CreateMatch(user1, user2, boardSide);
+            this.gameboardSide = gameboardSide;
+
+            this.bombs = bombs;
+
+            this.doubleAttack = doubleAttack;
+
+            Admin.getAdmin().AddToWaitingList(this);
         }
     }
 }

@@ -6,19 +6,29 @@ namespace NavalBattle
     {
         public static void Main(string[] args)
         {
-            //Admin admin = new Admin();
+            User user1 = new User("juan1");
 
-            //User user1 = new User("pj1");
+            User user2 = new User("juan2");
 
-            //User user2 = new User("pj2");
+            //User user3 = new User("juan3");
 
-            //user1.SearchGame(user1, user2, 6);
+            //User user4 = new User("juan4");
 
-            //user1.player.Attack("03");
-
-            //Match match = admin.GetMatch(12);
+            user1.SearchGame(7, false, false);
 
             
+            user2.SearchGame(7, false, false);
+
+            //user3.SearchGame(6, true, false);
+
+            //user4.SearchGame(6, true, false);
+
+
+            Console.WriteLine(Admin.getAdmin().MatchList.Count);
+            
+            Console.WriteLine(user1.player.Gameboard.Side);
+
+            /*
             Gameboard gameboard = new Gameboard(5);
 
             gameboard.addShip(3, "00", "S");
@@ -64,7 +74,7 @@ namespace NavalBattle
             printer = new AttackGameboardPrinter();
 
             printer.PrintGameboard(gameboard); 
-            
+            */
         }
     }
 }

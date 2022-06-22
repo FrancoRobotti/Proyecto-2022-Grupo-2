@@ -9,6 +9,14 @@ namespace NavalBattle
     {   
         private int side;
 
+        public int Side
+        {
+            get
+            {
+                return this.side;
+            }
+        }
+
         private string[,] gameboard;
 
         private List<Ship> ships = new List<Ship>();
@@ -18,6 +26,9 @@ namespace NavalBattle
         private List<Coords> water = new List<Coords>();
 
         private bool bombsSwitch;
+
+        private bool doubleAttackSwitch;
+        
         public List<Ship> Ships
         {
             get
